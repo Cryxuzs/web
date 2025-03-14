@@ -1991,7 +1991,7 @@
 				});
 			}
 		}
-		 function getNextSundayAtTenAM() {
+		  function getNextSundayAtTenAM() {
             let now = new Date();
             let nextSunday = new Date();
             nextSunday.setDate(now.getDate() + (7 - now.getDay()) % 7);
