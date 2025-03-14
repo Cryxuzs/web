@@ -1991,6 +1991,33 @@
 				});
 			}
 		}
+		 function getNextSundayAtTenAM() {
+            let now = new Date();
+            let nextSunday = new Date();
+            nextSunday.setDate(now.getDate() + (7 - now.getDay()) % 7);
+            nextSunday.setHours(10, 0, 0, 0);
+            
+            if (now > nextSunday) {
+                nextSunday.setDate(nextSunday.getDate() + 7);
+            }
+            return nextSunday;
+        }
+        
+        function updateCountdown() {
+            let now = new Date();
+            let target = getNextSundayAtTenAM();
+            let difference = target - now;
+            
+            let days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((difference % (1000 * 60)) / 1000);
+            
+            document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
 
 	});
 }());
